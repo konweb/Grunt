@@ -1,0 +1,22 @@
+{
+  "name": "package.json",
+  "version": "0.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kon",
+  "license": "BSD",
+  "devDependencies": {
+    "grunt": "^0.4.2",
+    "grunt-contrib-watch": "^0.5.3",
+    "grunt-contrib-compass": "^0.7.2",
+    "grunt-contrib-sass": "^0.7.2",
+    "grunt-contrib-livereload": "^0.1.2",
+    "grunt-contrib-compress": "^0.7.0",
+    "css-parse": "^1.5.3",
+    "grunt-combine-media-queries": "^1.0.15",
+    "grunt-kss": "^0.3.1"
+  }
+}
