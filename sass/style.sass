@@ -1,0 +1,22 @@
+// @import 'compass'
+// @import 'reset'
+
+=media($size)
+	@media screen and (max-width : $size)
+		@content
+
+body
+	color: #fff
+
+	p
+		font-size: 13px
+
+	+media(980px)
+		width: 90%
+
+.box
+	padding: 10px
+	border: solid 1px #ccc
+
+	+media(980px)
+		padding: 5px
