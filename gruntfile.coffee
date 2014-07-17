@@ -28,9 +28,9 @@ module.exports = (grunt) ->
 
     # Compass Compile
     compass:
-        dist:
-          options:
-            config: 'config.rb'
+      dist:
+        options:
+          config: 'config.rb'
 
     # Mqpacker
     cmq:
@@ -94,14 +94,14 @@ module.exports = (grunt) ->
 
     # Style Guide
     kss:
-        options:
-          includeType: 'scss'
-          includePath: '<%= dir.sass %>/html.scss'
-          template: 'styleguide/template'
-        dist:
-          files:
-              # dest : src
-              'styleguide': ['<%= dir.sass %>/']
+      options:
+        includeType: 'scss'
+        includePath: '<%= dir.sass %>/html.scss'
+        template: 'styleguide/template'
+      dist:
+        files:
+            # dest : src
+            'styleguide': ['<%= dir.sass %>/']
 
     # Monitoring
     watch:
@@ -134,7 +134,7 @@ module.exports = (grunt) ->
   # Task Js Minify
   grunt.registerTask "jsmin", ['clean:jsmin','uglify:min']
 
-  # Task Js Minify
+  # Task Js Join
   grunt.registerTask "jsjoin", ['clean:jsjoin','uglify:join']
 
   # Task StyleGuide
