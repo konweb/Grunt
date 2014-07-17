@@ -1,0 +1,1 @@
+var aaa=1,bbb=10;console.log(aaa+bbb);var ccc=1,ddd=10;console.log(ccc+ddd);
