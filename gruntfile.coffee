@@ -14,9 +14,9 @@ module.exports = (grunt) ->
     cssmin:
       options:
         noAdvanced: true
-      compress:
-        files:
-          '<%= dir.css %>/min.css': '<%= dir.css %>/*.css'
+      files:
+        src: "<%= dir.css %>/*.css"
+        dest: "<%= dir.css %>/min.css"
 
     # Sass Compile
     sass:
@@ -46,9 +46,21 @@ module.exports = (grunt) ->
         browsers: [ "last 2 version","ie 8","ie 9" ]
       files:
         expand: true
-        flatten: true
         src: "<%= dir.css %>/*.css"
         dest: "<%= dir.css %>/"
+        flatten: true
+
+
+    uglify:
+      min:
+        expand: true
+        src: "<%= dir.js %>/*.js"
+        dest: "<%= dir.js %>/"
+        ext: ".min.js"
+        flatten: true
+      join:
+        src: ['<%= dir.js %>/*.js','!<%= dir.js %>/*.min.js']
+        dest: '<%= dir.js %>/min.js'
 
     # Copy
     copy:
@@ -67,7 +79,9 @@ module.exports = (grunt) ->
 
     # Clean
     clean:
-      sass: "test/*"
+      css: "<%= cssmin.files.dest %>"
+      jsmin: "<%= dir.js %>/*.min.js"
+      jsjoin: "<%= uglify.join.dest %>"
 
     connect:
       server:
@@ -113,6 +127,15 @@ module.exports = (grunt) ->
 
   # Task Default
   grunt.registerTask "default", ['connect','watch']
+
+  # Task cssmin
+  grunt.registerTask "mincss", ['clean:css','cssmin']
+
+  # Task Js Minify
+  grunt.registerTask "jsmin", ['clean:jsmin','uglify:min']
+
+  # Task Js Minify
+  grunt.registerTask "jsjoin", ['clean:jsjoin','uglify:join']
 
   # Task StyleGuide
   grunt.registerTask "dev", ['kss']
