@@ -9,6 +9,7 @@ module.exports = (grunt) ->
       sass: 'sass'
       css: 'css'
       js: 'js'
+      img: 'images'
 
     # Minify
     cssmin:
@@ -91,6 +92,23 @@ module.exports = (grunt) ->
           livereload: 35729
           # keepalive: true
           base: '<%= dir.root %>'
+
+    imagemin:
+      static:
+        # options:
+        #   optimizationLevel: 7
+        #   use: [mozjpeg()]
+
+        files:
+          '<%= dir.img %>/min/sample_min.png': '<%= dir.img %>/sample.png'
+
+      all:
+        files: [
+          expand: true
+          cwd: '<%= dir.img %>/'
+          src: ['*.{png,jpg,gif}']
+          dest: '<%= dir.img %>/min/'
+        ]
 
     # Style Guide
     kss:
