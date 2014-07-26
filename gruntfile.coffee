@@ -149,7 +149,8 @@ module.exports = (grunt) ->
         tasks: ['cssmin']
 
       html:
-        files: ['<%= dir.root %>/**/*.html']
+        files: ['<%= dir.root %>/**/*.jade']
+        tasks: ['jade']
 
   # Package Load
   for taskName of pkg.devDependencies
