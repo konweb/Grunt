@@ -11,13 +11,15 @@ module.exports = (grunt) ->
       js: 'js'
       img: 'images'
 
-    # Minify
-    cssmin:
-      options:
-        noAdvanced: true
-      files:
-        src: "<%= dir.css %>/*.css"
-        dest: "<%= dir.css %>/min.css"
+    #Jade Compile
+    jade:
+      compile:
+        options:
+          pretty: true
+          data:
+            year: '<%= grunt.template.today("yyyy") %>'
+        files:
+          "index.html": "index.jade"
 
     # Sass Compile
     sass:
@@ -51,7 +53,15 @@ module.exports = (grunt) ->
         dest: "<%= dir.css %>/"
         flatten: true
 
+    # Minify
+    cssmin:
+      options:
+        noAdvanced: true
+      files:
+        src: "<%= dir.css %>/*.css"
+        dest: "<%= dir.css %>/min.css"
 
+    #Js Minify,Join
     uglify:
       min:
         expand: true
@@ -62,6 +72,24 @@ module.exports = (grunt) ->
       join:
         src: ['<%= dir.js %>/*.js','!<%= dir.js %>/*.min.js']
         dest: '<%= dir.js %>/min.js'
+
+    #Image Minify
+    imagemin:
+      static:
+        # options:
+        #   optimizationLevel: 7
+        #   use: [mozjpeg()]
+
+        files:
+          '<%= dir.img %>/min/sample_min.png': '<%= dir.img %>/sample.png'
+
+      all:
+        files: [
+          expand: true
+          cwd: '<%= dir.img %>/'
+          src: ['*.{png,jpg,gif}']
+          dest: '<%= dir.img %>/min/'
+        ]
 
     # Copy
     copy:
@@ -84,6 +112,7 @@ module.exports = (grunt) ->
       jsmin: "<%= dir.js %>/*.min.js"
       jsjoin: "<%= uglify.join.dest %>"
 
+    #Server
     connect:
       server:
         options:
@@ -92,23 +121,6 @@ module.exports = (grunt) ->
           livereload: 35729
           # keepalive: true
           base: '<%= dir.root %>'
-
-    imagemin:
-      static:
-        # options:
-        #   optimizationLevel: 7
-        #   use: [mozjpeg()]
-
-        files:
-          '<%= dir.img %>/min/sample_min.png': '<%= dir.img %>/sample.png'
-
-      all:
-        files: [
-          expand: true
-          cwd: '<%= dir.img %>/'
-          src: ['*.{png,jpg,gif}']
-          dest: '<%= dir.img %>/min/'
-        ]
 
     # Style Guide
     kss:
