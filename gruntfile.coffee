@@ -148,7 +148,7 @@ module.exports = (grunt) ->
         files: ['<%= dir.css %>/*.css','!<%= dir.css %>/min.css'] # ウォッチ対象として、ディレクトリ配下の*.cssを指定
         tasks: ['cssmin']
 
-      html:
+      jade:
         files: ['<%= dir.root %>/**/*.jade']
         tasks: ['jade']
 
